@@ -2,16 +2,19 @@
   "name": "cd_laasstaging_fs",
   "version": "1.0.0",
   "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
+  "repository": "https://github.com/McK-Internal/SAP_ERP_FINANCE-cd_laasstaging_fs.git",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
     "express": "^4",
-    "hdb": "^0.19.0"
+    "hdb": "^0.19.0",
+    "@sap/xssec": "^3",
+    "passport": "^0"
   },
   "scripts": {
-    "login": "cf login -a https://api.cf.eu10.hana.ondemand.com --sso",
+    "login": "cf login -a https://api.cf.eu10.hana.ondemand.com --sso -s ErpDevSpcLaasApp",
+    "bind": "cds bind --to cd_laasstaging_fs-db && cds bind --to cd_laasstaging_fs-auth",
     "start": "cds run",
     "start-local": "cds-ts watch"
   },
@@ -30,6 +33,9 @@
     "requires": {
       "db": {
         "kind": "hana-cloud"
+      },
+      "auth": {
+        "kind": "xsuaa"
       }
     }
   },

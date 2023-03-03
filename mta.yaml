@@ -23,6 +23,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: cd_laasstaging_fs-db
+      - name: cd_laasstaging_fs-auth
 
   - name: cd_laasstaging_fs-db-deployer
     type: hdb
@@ -38,3 +39,17 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+
+  - name: cd_laasstaging_fs-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: cd_laasstaging_fs-${org}-${space}
+        tenant-mode: dedicated
+      service-keys:
+      - config:
+          permissions: read-write
+        name: cpi_key

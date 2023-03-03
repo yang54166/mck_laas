@@ -3,15 +3,20 @@ namespace Laas;
 using { managed, cuid } from '@sap/cds/common';
 
 entity Deductions: managed, cuid {
-    transactionID: UUID;
+    AssignmentID: String(20);
     status: String(30);
-    fmno: String(9);
+    fmno: String(10);
     name: String;
     companyCode: String(4);
-    costCenter: String(8);
-    sourceSystem: String;
-    deductionType: String;
+    sourceSystem: String(3); // S4H,PCC
+    chargeDescription: String(12);
+    invoiceNumber: String(12);
     componentID: String;
-    sourceAmount: Decimal(15,3);
-    sourceCurrency: String;
+    sourceAmount: Decimal(23,2);
+    sourceCurrency: String(5);
+    monthOfDeduction: Integer;
+    originationDate: Date;
+    approvedDate: Timestamp;
+    approvedBy: String;
+    downloadDate: Timestamp;
 };

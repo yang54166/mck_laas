@@ -1,0 +1,55 @@
+{
+  "xsappname": "cd_laasstaging_fs",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.approve",
+      "description": "approver"
+    },
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Approver",
+      "scope-references": [
+        "$XSAPPNAME.approve"
+      ],
+      "description": "approver role"
+    },
+    {
+      "name": "Admin",
+      "scope-references": [
+        "$XSAPPNAME.admin",
+        "$XSAPPNAME.approve"
+      ],
+      "description": "admin role"
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "ZBC:APP_PABLAAS:APR",
+      "description": "Approver",
+      "role-template-references": [
+        "$XSAPPNAME.Approver"
+      ]
+    },
+    {
+      "name": "ZBC:APP_PABLAAS:ADM",
+      "description": "Admin",
+      "role-template-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://**.cfapps.eu10.hana.ondemand.com/login/callback",
+      "https://**.eu10.applicationstudio.cloud.sap/login/callback",
+      "https://oauth.pstmn.io/v1/callback"
+    ]
+  },
+  "attributes": []
+}
