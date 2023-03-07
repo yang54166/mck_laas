@@ -19,4 +19,6 @@ entity Deductions: managed, cuid {
     approvedDate: Timestamp;
     approvedBy: String;
     downloadDate: Timestamp;
+    AccountingDocument: String(10);
+    LineNumber: Integer;
 };
