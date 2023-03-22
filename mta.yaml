@@ -39,6 +39,8 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+      config:
+        schema: LAAS_Staging_HDI
 
   - name: cd_laasstaging_fs-auth
     type: org.cloudfoundry.managed-service
