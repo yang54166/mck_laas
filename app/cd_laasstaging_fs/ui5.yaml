@@ -1,0 +1,4 @@
+specVersion: "2.5"
+metadata:
+  name: mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs
+type: application

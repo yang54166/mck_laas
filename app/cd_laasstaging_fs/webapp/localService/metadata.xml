@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="LaasDeductionsService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Deductions" EntityType="LaasDeductionsService.Deductions"/>
+            </EntityContainer>
+            <EntityType Name="Deductions">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="AssignmentID" Type="Edm.String" MaxLength="20"/>
+                <Property Name="status" Type="Edm.String" MaxLength="30"/>
+                <Property Name="fmno" Type="Edm.String" MaxLength="10"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="companyCode" Type="Edm.String" MaxLength="4"/>
+                <Property Name="sourceSystem" Type="Edm.String" MaxLength="3"/>
+                <Property Name="chargeDescription" Type="Edm.String" MaxLength="12"/>
+                <Property Name="invoiceNumber" Type="Edm.String" MaxLength="12"/>
+                <Property Name="componentID" Type="Edm.String"/>
+                <Property Name="sourceAmount" Type="Edm.Decimal" Scale="2" Precision="23"/>
+                <Property Name="sourceCurrency" Type="Edm.String" MaxLength="5"/>
+                <Property Name="monthOfDeduction" Type="Edm.Int32"/>
+                <Property Name="originationDate" Type="Edm.Date"/>
+                <Property Name="approvedDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="approvedBy" Type="Edm.String"/>
+                <Property Name="downloadDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="AccountingDocument" Type="Edm.String" MaxLength="10"/>
+                <Property Name="LineNumber" Type="Edm.Int32"/>
+            </EntityType>
+            <Annotations Target="LaasDeductionsService.Deductions/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="LaasDeductionsService.Deductions/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="LaasDeductionsService.Deductions/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="LaasDeductionsService.Deductions/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                </Schema>
+                            </edmx:DataServices>
+                        </edmx:Edmx>

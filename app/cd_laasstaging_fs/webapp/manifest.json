@@ -1,0 +1,138 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.9.2",
+      "toolsId": "29569746-f400-4895-b911-24e45d41e587"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/laas-deductions/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.112.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "DeductionsList",
+          "target": "DeductionsList"
+        },
+        {
+          "pattern": "Deductions({key}):?query:",
+          "name": "DeductionsObjectPage",
+          "target": "DeductionsObjectPage"
+        }
+      ],
+      "targets": {
+        "DeductionsList": {
+          "type": "Component",
+          "id": "DeductionsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Deductions",
+              "variantManagement": "Page",
+              "initialLoad": true,
+              "navigation": {
+                "Deductions": {
+                  "detail": {
+                    "route": "DeductionsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "DeductionsObjectPage": {
+          "type": "Component",
+          "id": "DeductionsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "entitySet": "Deductions"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

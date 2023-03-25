@@ -1,57 +1,103 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: cd_laasstaging_fs
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+- name: cd_laasstaging_fs-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: cd_laasstaging_fs-db
+  - name: cd_laasstaging_fs-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: cd_laasstaging_fs-db-deployer
+  type: hdb
+  path: db
+  requires:
+  - name: cd_laasstaging_fs-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: cd_laasstaging_fs-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: cd_laasstaging_fs-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - mcklaasstagingcdlaasstagingfscdlaasstagingfs.zip
+      name: mcklaasstagingcdlaasstagingfscdlaasstagingfs
+      target-path: resources/
+- name: mcklaasstagingcdlaasstagingfscdlaasstagingfs
+  type: html5
+  path: app/cd_laasstaging_fs
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cd_laasstaging_fs-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      schema: LAAS_Staging_HDI
+    service: hana
+    service-plan: hdi-shared
+- name: cd_laasstaging_fs-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: cd_laasstaging_fs-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-keys:
+    - config:
+        permissions: read-write
+      name: cpi_key
+    service-plan: application
+- name: cd_laasstaging_fs-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cd_laasstaging_fs-html5-srv
+    service-plan: app-host
+- name: cd_laasstaging_fs-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: cd_laasstaging_fs-destination-service
+    service-plan: lite
 parameters:
+  deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npx -p @sap/cds-dk cds build --production
-modules:
-  - name: cd_laasstaging_fs-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: cd_laasstaging_fs-db
-      - name: cd_laasstaging_fs-auth
-
-  - name: cd_laasstaging_fs-db-deployer
-    type: hdb
-    path: db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: cd_laasstaging_fs-db
-
-resources:
-  - name: cd_laasstaging_fs-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-      config:
-        schema: LAAS_Staging_HDI
-
-  - name: cd_laasstaging_fs-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: cd_laasstaging_fs-${org}-${space}
-        tenant-mode: dedicated
-      service-keys:
-      - config:
-          permissions: read-write
-        name: cpi_key
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk cds build --production

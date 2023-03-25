@@ -1,50 +1,61 @@
 {
-  "name": "cd_laasstaging_fs",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "https://github.com/McK-Internal/SAP_ERP_FINANCE-cd_laasstaging_fs.git",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^6",
-    "express": "^4",
-    "hdb": "^0.19.0",
-    "@sap/xssec": "^3",
-    "passport": "^0"
-  },
-  "scripts": {
-    "login": "cf login -a https://api.cf.eu10.hana.ondemand.com --sso -s ErpDevSpcLaasApp",
-    "bind": "cds bind --to cd_laasstaging_fs-db && cds bind --to cd_laasstaging_fs-auth",
-    "start": "cds run",
-    "start-local": "cds-ts watch"
-  },
-  "cds": {
-    "build": {
-      "tasks": [
-        {
-          "for": "hana",
-          "dest": "../db"
-        },
-        {
-          "for": "node-cf"
-        }
-      ]
+    "name": "cd_laasstaging_fs",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "https://github.com/McK-Internal/SAP_ERP_FINANCE-cd_laasstaging_fs.git",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^6",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "hdb": "^0.19.0",
+        "passport": "^0"
     },
-    "requires": {
-      "db": {
-        "kind": "hana-cloud"
-      },
-      "auth": {
-        "kind": "xsuaa"
-      }
-    }
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.18",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
-    "eslint": "^8.33.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
-  }
+    "scripts": {
+        "login": "cf login -a https://api.cf.eu10.hana.ondemand.com --sso -s ErpDevSpcLaasApp",
+        "bind": "cds bind --to cd_laasstaging_fs-db && cds bind --to cd_laasstaging_fs-auth",
+        "start": "cds run",
+        "start-local": "cds-ts watch",
+        "watch-cd_laasstaging_fs": "cds watch --open cd_laasstaging_fs/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy cd_laasstaging_fs --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "cds": {
+        "build": {
+            "tasks": [
+                {
+                    "for": "hana",
+                    "dest": "../db"
+                },
+                {
+                    "for": "node-cf"
+                }
+            ]
+        },
+        "requires": {
+            "db": {
+                "kind": "hana-cloud"
+            },
+            "auth": {
+                "kind": "xsuaa"
+            }
+        }
+    },
+    "devDependencies": {
+        "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+        "@sap/ux-specification": "^1.108.1",
+        "@sapui5/ts-types": "^1.92.2",
+        "@types/node": "^18.11.18",
+        "@typescript-eslint/eslint-plugin": "^5.50.0",
+        "@typescript-eslint/parser": "^5.50.0",
+        "eslint": "^7.32.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.5",
+        "rimraf": "^3.0.2"
+    },
+    "sapux": [
+        "app/cd_laasstaging_fs"
+    ]
 }
