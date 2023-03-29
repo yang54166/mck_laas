@@ -64,6 +64,11 @@ annotate service.Deductions with @(
         },
         {
             $Type : 'UI.DataField',
+            Label : 'Accounting Document',
+            Value : AccountingDocument,
+        },
+        {
+            $Type : 'UI.DataField',
             Label : 'Source Amount',
             Value : sourceAmount,
         },
@@ -84,6 +89,8 @@ annotate service.Deductions with @(
         },
     ]
 );
+
+
 annotate service.Deductions with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
@@ -105,7 +112,7 @@ annotate service.Deductions with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'name',
+                Label : 'Name',
                 Value : name,
             },
             {
@@ -135,7 +142,7 @@ annotate service.Deductions with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sourceAmount',
+                Label : 'Source Amount',
                 Value : sourceAmount,
             },
             {
