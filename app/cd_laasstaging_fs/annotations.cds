@@ -2,10 +2,22 @@ using LaasDeductionsService as service from '../../srv/service';
 
 annotate service.Deductions with @(
     UI.Identification : [
-        { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.approve', Label: 'Approve'},
-        { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.unapprove', Label: 'Unapprove'},
-        { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.post', Label: 'Post'}
+        { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.approve', Label: 'Approve', InvocationGrouping: #ChangeSet},
+        { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.unapprove', Label: 'Unapprove', InvocationGrouping: #ChangeSet},
+        { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.post', Label: 'Post', InvocationGrouping: #ChangeSet}
     ],
+    UI.HeaderInfo: {
+        TypeName : 'Deduction',
+        TypeNamePlural : 'Deductions',
+        Title : {
+            $Type : 'UI.DataField',
+            Value: fmno
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value: companyCode
+        }
+    },
     UI.SelectionFields: [
         fmno,
         companyCode,
@@ -49,6 +61,16 @@ annotate service.Deductions with @(
             $Type : 'UI.DataField',
             Label : 'Company Code',
             Value : companyCode,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Source Amount',
+            Value : sourceAmount,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Source Currency',
+            Value : sourceCurrency,
         },
          {
             $Type : 'UI.DataField',

@@ -6,15 +6,18 @@ class LaasDeductionsService extends cds.ApplicationService {
         const { Deductions } = this.entities
        
         this.on('approve', Deductions, async req => {
-            await cds.update(Deductions, req.params[0].ID).set({status: "APPROVED"});
+            const ID = req.params;
+            await cds.update(Deductions, {ID}).set({status: "APPROVED", approvedBy: req.user.id, approvedDate: new Date()});
         });
     
         this.on('unapprove', Deductions, async req => {
-            await cds.update(Deductions, req.params[0].ID).set({status: "UNAPPROVED"});
+            const ID = req.params;
+            await cds.update(Deductions, {ID}).set({status: "UNAPPROVED"});
         });
 
         this.on('post', Deductions, async req => {
-            await cds.update(Deductions, req.params[0].ID).set({status: "POSTED"});
+            const ID = req.params;
+            await cds.update(Deductions, {ID}).set({status: "POSTED"});
         });
       
         // required
