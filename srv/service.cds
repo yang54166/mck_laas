@@ -10,9 +10,9 @@ service LaasDeductionsService {
         action post();
     };
 
-   @readonly entity statusList as SELECT DISTINCT(status) from my.Deductions order by status;
+   @readonly entity statusList as SELECT DISTINCT(status) from my.Deductions where status != '' order by status;
 
-   @readonly entity fmnoList as SELECT DISTINCT(fmno) from my.Deductions order by fmno;
+   @readonly entity fmnoList as SELECT DISTINCT(fmno) from my.Deductions where fmno != '' order by fmno;
 
-   @readonly entity companyCodeList as SELECT DISTINCT(companyCode) from my.Deductions order by companyCode;
+   @readonly entity companyCodeList as SELECT DISTINCT(companyCode) from my.Deductions where companyCode != '' order by companyCode;
 }
