@@ -1,6 +1,6 @@
 namespace Laas;
 
-using { managed, cuid } from '@sap/cds/common';
+using { managed, cuid, sap.common.CodeList} from '@sap/cds/common';
 
 entity Deductions: managed, cuid {
     AssignmentID: String(20);
@@ -22,3 +22,5 @@ entity Deductions: managed, cuid {
     AccountingDocument: String(10);
     LineNumber: Integer;
 };
+
+
