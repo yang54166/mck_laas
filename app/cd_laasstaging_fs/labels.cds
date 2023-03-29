@@ -8,6 +8,20 @@ annotate my.Deductions with @title : 'Deductions'{
     fmno @title : 'FMNO';
     name @title : 'Name';
     sourceAmount @title: 'Source Amount';
-    sourceCurrency @title: 'Source Currency'
+    sourceCurrency @title: 'Source Currency';
+    sourceSystem @title: 'Source System';
+    chargeDescription @title : 'Charge Description';
+    invoiceNumber @title : 'Invoice Number';
+    AccountingDocument @title : 'Accounting Document';
+    monthOfDeduction @title : 'Month of Deduction';
+    originationDate @title : 'Origination Date';
+    componentID @title : 'Component ID';
+    downloadDate @title : 'Download Date';
+    LineNumber @title : 'Line Number';
+
 };
  
+
+ 
+ 
+
