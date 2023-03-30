@@ -8,7 +8,7 @@ sap.ui.define(['sap/fe/test/ListReport'], function(ListReport) {
 
     return new ListReport(
         {
-            appId: 'mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs',
+            appId: 'cd_laasstaging_fs',
             componentId: 'DeductionsList',
             entitySet: 'Deductions'
         },

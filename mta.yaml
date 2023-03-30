@@ -1,7 +1,8 @@
 _schema-version: "3.1"
 ID: cd_laasstaging_fs
-description: A simple CAP project.
+description: CD/LAAS Staging Integration
 version: 1.0.0
+
 modules:
 - name: cd_laasstaging_fs-srv
   type: nodejs
@@ -9,21 +10,38 @@ modules:
   requires:
   - name: cd_laasstaging_fs-db
   - name: cd_laasstaging_fs-auth
+  - name: cd_laasstaging_fs-logs
   provides:
   - name: srv-api
     properties:
       srv-url: ${default-url}
   parameters:
     buildpack: nodejs_buildpack
+    stack: cflinuxfs4
   build-parameters:
     builder: npm-ci
+
 - name: cd_laasstaging_fs-db-deployer
   type: hdb
   path: db
   requires:
   - name: cd_laasstaging_fs-db
+  - name: cd_laasstaging_fs-logs
   parameters:
     buildpack: nodejs_buildpack
+    stack: cflinuxfs4
+
+- name: cd_laasstaging_fs
+  type: html5
+  path: app/cd_laasstaging_fs
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+
 - name: cd_laasstaging_fs-app-content
   type: com.sap.application.content
   path: .
@@ -35,19 +53,42 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - mcklaasstagingcdlaasstagingfscdlaasstagingfs.zip
-      name: mcklaasstagingcdlaasstagingfscdlaasstagingfs
+      - cd_laasstaging_fs.zip
+      name: cd_laasstaging_fs
       target-path: resources/
-- name: mcklaasstagingcdlaasstagingfscdlaasstagingfs
-  type: html5
-  path: app/cd_laasstaging_fs
+
+
+- name: cd_laasstaging_fs-destination-content
+  type: com.sap.application.content
+  requires:
+    - name: cd_laasstaging_fs-dest
+      parameters:
+        content-target: true
+    - name: cd_laasstaging_fs-repo-host
+      parameters:
+        service-key:
+          name: cd_laasstaging_fs-repo-host-key
+    - name: cd_laasstaging_fs-auth
+      parameters:
+        service-key:
+          name: cd_laasstaging_fs-auth-key
+  parameters:
+    content:
+      instance:
+        destinations:
+          - Name: cd_laasstaging_fs_cd_laasstaging_fs_repo_host
+            ServiceInstanceName: cd_laasstaging_fs-html5-srv
+            ServiceKeyName: cd_laasstaging_fs-repo-host-key
+            sap.cloud.service: cd_laasstaging_fs
+          - Authentication: OAuth2UserTokenExchange
+            Name: cd_laasstaging_fs_cd_laasstaging_fs_auth
+            ServiceInstanceName: cd_laasstaging_fs-auth
+            ServiceKeyName: cd_laasstaging_fs-auth-key
+            sap.cloud.service: cd_laasstaging_fs
+        existing_destinations_policy: ignore
   build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+    no-source: true
+
 resources:
 - name: cd_laasstaging_fs-db
   type: com.sap.xs.hdi-container
@@ -56,6 +97,7 @@ resources:
       schema: LAAS_Staging_HDI
     service: hana
     service-plan: hdi-shared
+
 - name: cd_laasstaging_fs-auth
   type: org.cloudfoundry.managed-service
   parameters:
@@ -69,17 +111,19 @@ resources:
         permissions: read-write
       name: cpi_key
     service-plan: application
+
 - name: cd_laasstaging_fs-repo-host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
     service-name: cd_laasstaging_fs-html5-srv
     service-plan: app-host
-- name: cd_laasstaging_fs-destination-service
+
+- name: cd_laasstaging_fs-dest
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      HTML5Runtime_enabled: false
+      HTML5Runtime_enabled: true
       init_data:
         instance:
           destinations:
@@ -88,11 +132,30 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            Name: cd_laasstaging_fs-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            HTML5.Timeout: 120000
+            HTML5.SocketReadTimeoutInSeconds: 120
+            timeout: 120000
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
-    service-name: cd_laasstaging_fs-destination-service
+    service-name: cd_laasstaging_fs-dest
     service-plan: lite
+  requires:
+    - name: srv-api
+
+- name: cd_laasstaging_fs-logs
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: application-logs
+    service-plan: lite
+
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

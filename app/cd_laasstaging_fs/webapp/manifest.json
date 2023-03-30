@@ -1,7 +1,7 @@
 {
   "_version": "1.49.0",
   "sap.app": {
-    "id": "mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs",
+    "id": "cd_laasstaging_fs",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -17,12 +17,24 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/laas-deductions/",
+        "uri": "laas-deductions/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "localUri": "localService/metadata.xml",
           "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "LaasStaging",
+          "action": "manage"
         }
       }
     }
@@ -62,7 +74,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs.i18n.i18n"
+          "bundleName": "cd_laasstaging_fs.i18n.i18n"
         }
       },
       "": {
@@ -134,5 +146,9 @@
   "sap.fiori": {
     "registrationIds": [],
     "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "service": "cd_laasstaging_fs",
+    "public": true
   }
 }
