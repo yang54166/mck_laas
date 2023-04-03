@@ -11,7 +11,7 @@ annotate service.Deductions with @(
         TypeNamePlural : 'Deductions',
         Title : {
             $Type : 'UI.DataField',
-            Value: fmno
+            Value: AssignmentID
         },
         Description : {
             $Type : 'UI.DataField',
