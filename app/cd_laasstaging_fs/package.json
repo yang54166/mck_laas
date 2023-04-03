@@ -1,57 +1,32 @@
 {
     "name": "cd_laasstaging_fs",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "https://github.com/McK-Internal/SAP_ERP_FINANCE-cd_laasstaging_fs.git",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "^6",
-        "@sap/xssec": "^3",
-        "express": "^4",
-        "hdb": "^0.19.0",
-        "passport": "^0"
-    },
+    "version": "0.0.1",
+    "description": "A Fiori application.",
+    "keywords": [
+        "ui5",
+        "openui5",
+        "sapui5"
+    ],
+    "main": "webapp/index.html",
     "scripts": {
         "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf",
         "build:cf": "ui5 build preload --clean-dest --config ui5-deploy.yaml --include-task=generateCachebusterInfo",
         "prestart-local": "rm -rf ./dist && npm i",
         "start-local": "node node_modules/@sap/html5-repo-mock/index.js"
     },
-    "cds": {
-        "build": {
-            "tasks": [
-                {
-                    "for": "hana",
-                    "dest": "../db"
-                },
-                {
-                    "for": "node-cf"
-                }
-            ]
-        },
-        "requires": {
-            "db": {
-                "kind": "hana-cloud"
-            },
-            "auth": {
-                "kind": "xsuaa"
-            }
-        }
-    },
     "devDependencies": {
-        "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-        "@sap/ux-specification": "^1.108.1",
-        "@sapui5/ts-types": "^1.92.2",
-        "@types/node": "^18.11.18",
-        "@typescript-eslint/eslint-plugin": "^5.50.0",
-        "@typescript-eslint/parser": "^5.50.0",
-        "eslint": "^7.32.0",
-        "ts-node": "^10.9.1",
-        "typescript": "^4.9.5",
-        "rimraf": "^3.0.2"
+        "@sap/ui5-builder-webide-extension": "^1.1.8",
+        "ui5-task-zipper": "^0.5.0",
+        "mbt": "^1.2.18",
+        "@ui5/cli": "^2.14.0",
+        "@sap/approuter": "13.1.1",
+        "@sap/html5-repo-mock": "^2.1.1"
     },
-    "sapux": [
-        "app/cd_laasstaging_fs"
-    ]
+    "ui5": {
+        "dependencies": [
+            "@sap/ui5-builder-webide-extension",
+            "ui5-task-zipper",
+            "mbt"
+        ]
+    }
 }
