@@ -7,15 +7,15 @@ annotate service.Deductions with @(
         { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.post', Label: 'Post', InvocationGrouping: #ChangeSet}
     ],
     UI.HeaderInfo: {
-        TypeName : 'Deduction',
-        TypeNamePlural : 'Deductions',
+        TypeName : '{i18n>Deduction}',
+        TypeNamePlural : '{i18n>Deductions}',
         Title : {
             $Type : 'UI.DataField',
-            Value: AssignmentID
+            Value: companyCode
         },
         Description : {
             $Type : 'UI.DataField',
-            Value: companyCode
+            Value: fmno
         }
     },
     UI.SelectionFields: [
@@ -39,54 +39,89 @@ annotate service.Deductions with @(
         { $Type : 'UI.DataFieldForAction', Action: 'LaasDeductionsService.post', Label: 'Post'},
         {
             $Type : 'UI.DataField',
-            Label : 'Assignment ID',
-            Value : AssignmentID,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Status',
-            Value : status,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'FMNO',
-            Value : fmno,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Name',
-            Value : name,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Company Code',
+            Label : '{i18n>companyCode}',
             Value : companyCode,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Accounting Document',
-            Value : AccountingDocument,
+            Label : '{i18n>fmno}',
+            Value : fmno,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Source Amount',
+            Label : '{i18n>name}',
+            Value : name,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>sourceCurrency}',
+            Value : sourceCurrency,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>sourceAmount}',
             Value : sourceAmount,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Source Currency',
-            Value : sourceCurrency,
+            Label : '{i18n>status}',
+            Value : status,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>monthOfDeduction}',
+            Value : monthOfDeduction,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>sourceSystem}',
+            Value : sourceSystem,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>componentID}',
+            Value : componentID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : '{i18n>AssignmentID}',
+            Value : AssignmentID,
         },
          {
             $Type : 'UI.DataField',
-            Label : 'Approved By',
+            Label : '{i18n>originationDate}',
+            Value : originationDate,
+        },
+         {
+            $Type : 'UI.DataField',
+            Label : '{i18n>approvedDate}',
+            Value : approvedDate,
+        },
+         {
+            $Type : 'UI.DataField',
+            Label : '{i18n>downloadDate}',
+            Value : downloadDate,
+        },
+         {
+            $Type : 'UI.DataField',
+            Label : '{i18n>approvedBy}',
             Value : approvedBy,
         },
          {
             $Type : 'UI.DataField',
-            Label : 'Approve Date',
-            Value : approvedDate,
+            Label : '{i18n>invoiceNumber}',
+            Value : invoiceNumber,
         },
+         {
+            $Type : 'UI.DataField',
+            Label : '{i18n>AccountingDocument}',
+            Value : AccountingDocument,
+        },
+         {
+            $Type : 'UI.DataField',
+            Label : '{i18n>LineNumber}',
+            Value : LineNumber,
+        }
     ]
 );
 
