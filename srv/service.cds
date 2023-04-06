@@ -6,7 +6,7 @@ service LaasDeductionsService {
         action approve();
         @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status']} )
         action unapprove();
-        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status']} )
+        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status', '_it/downloadDate']} )
         action post();
     };
 
