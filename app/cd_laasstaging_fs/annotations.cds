@@ -41,31 +41,37 @@ annotate service.Deductions with @(
             $Type : 'UI.DataField',
             Label : '{@i18n>companyCode}',
             Value : companyCode,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
         {
             $Type : 'UI.DataField',
             Label : '{@i18n>fmno}',
             Value : fmno,
+            ![@HTML5.CssDefaults] : {width: '6rem'}
         },
         {
             $Type : 'UI.DataField',
             Label : '{@i18n>name}',
             Value : name,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
         {
             $Type : 'UI.DataField',
             Label : '{@i18n>sourceCurrency}',
             Value : sourceCurrency,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
         {
             $Type : 'UI.DataField',
             Label : '{@i18n>sourceAmount}',
             Value : sourceAmount,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
         {
             $Type : 'UI.DataField',
             Label : '{@i18n>status}',
             Value : status,
+            ![@HTML5.CssDefaults] : {width: '6rem'}
         },
         {
             $Type : 'UI.DataField',
@@ -86,26 +92,31 @@ annotate service.Deductions with @(
             $Type : 'UI.DataField',
             Label : '{@i18n>componentID}',
             Value : componentID,
+            ![@HTML5.CssDefaults] : {width: '7rem'}
         },
         {
             $Type : 'UI.DataField',
             Label : '{@i18n>AssignmentID}',
             Value : AssignmentID,
+            ![@HTML5.CssDefaults] : {width: '7rem'}
         },
          {
             $Type : 'UI.DataField',
             Label : '{@i18n>originationDate}',
             Value : originationDate,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
          {
             $Type : 'UI.DataField',
             Label : '{@i18n>approvedDate}',
             Value : approvedDate,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
          {
             $Type : 'UI.DataField',
             Label : '{@i18n>downloadDate}',
             Value : downloadDate,
+            ![@HTML5.CssDefaults] : {width: '8rem'}
         },
          {
             $Type : 'UI.DataField',
