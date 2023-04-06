@@ -8,7 +8,7 @@ sap.ui.define(['sap/fe/test/ObjectPage'], function(ObjectPage) {
 
     return new ObjectPage(
         {
-            appId: 'mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs',
+            appId: 'cd_laasstaging_fs',
             componentId: 'DeductionsObjectPage',
             entitySet: 'Deductions'
         },

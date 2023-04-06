@@ -17,7 +17,7 @@ class LaasDeductionsService extends cds.ApplicationService {
 
         this.on('post', Deductions, async req => {
             const ID = req.params;
-            await cds.update(Deductions, {ID}).set({status: "POSTED"});
+            await cds.update(Deductions, {ID}).set({status: "POSTED", downloadDate: new Date()});
         });
       
         // required

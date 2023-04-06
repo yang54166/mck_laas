@@ -2,12 +2,25 @@ using {Laas as my} from '../../db/schema';
 
 annotate my.Deductions with @title : 'Deductions'{
     
-    companyCode @title : 'Company Code';
-    AssignmentID @title: 'Assignment ID';
-    status @title : 'Status';
-    fmno @title : 'FMNO';
-    name @title : 'Name';
-    sourceAmount @title: 'Source Amount';
-    sourceCurrency @title: 'Source Currency'
+    companyCode @title : '{@i18n>companyCode}';
+    AssignmentID @title: '{@i18n>AssignmentID}';
+    status @title : '{@i18n>status}';
+    fmno @title : '{@i18n>fmno}';
+    name @title : '{@i18n>name}';
+    sourceAmount @title: '{@i18n>sourceAmount}';
+    sourceCurrency @title: '{@i18n>sourceCurrency}';
+    sourceSystem @title: '{@i18n>sourceSystem}';
+    chargeDescription @title : '{@i18n>chargeDescription}';
+    invoiceNumber @title : '{@i18n>invoiceNumber}';
+    AccountingDocument @title : '{@i18n>AccountingDocument}';
+    monthOfDeduction @title : '{@i18n>monthOfDeduction}';
+    originationDate @title : '{@i18n>originationDate}';
+    componentID @title : '{@i18n>componentID}';
+    downloadDate @title : '{@i18n>downloadDate}';
+    LineNumber @title : '{@i18n>LineNumber}';
+
 };
+
  
+ 
+

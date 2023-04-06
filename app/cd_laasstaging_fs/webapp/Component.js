@@ -3,7 +3,7 @@ sap.ui.define(
     function (Component) {
         "use strict";
 
-        return Component.extend("mck.laas.staging.cdlaasstagingfs.cdlaasstagingfs.Component", {
+        return Component.extend("cd_laasstaging_fs.Component", {
             metadata: {
                 manifest: "json"
             }
