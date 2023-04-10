@@ -118,6 +118,7 @@
                             "entitySet": "Deductions",
                             "variantManagement": "Page",
                             "initialLoad": true,
+                            "enhanceI18n": "i18n/i18n.properties",
                             "navigation": {
                                 "Deductions": {
                                     "detail": {
@@ -144,7 +145,8 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "Deductions"
+                            "entitySet": "Deductions",
+                            "enhanceI18n": "i18n/i18n.properties"
                         }
                     }
                 }
