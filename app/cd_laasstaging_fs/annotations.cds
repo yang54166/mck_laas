@@ -11,11 +11,11 @@ annotate service.Deductions with @(
         TypeNamePlural : '{@i18n>Deductions}',
         Title : {
             $Type : 'UI.DataField',
-            Value: AssignmentID
+            Value: name
         },
         Description : {
             $Type : 'UI.DataField',
-            Value: companyCode
+            Value: chargeDescription
         }
     },
     UI.SelectionFields: [

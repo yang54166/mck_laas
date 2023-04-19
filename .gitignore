@@ -29,3 +29,6 @@ mta_archives/
 # IDEs
 # .vscode
 # .idea
+resources/
+.gitignore
+app/cd_laasstaging_fs/dist/
