@@ -168,6 +168,26 @@ annotate service.Deductions with @(
             $Type: 'UI.DataField',
             Label: '{@i18n>LineNumber}',
             Value: LineNumber,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>createdAt}',
+            Value: createdAt,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>createdBy}',
+            Value: createdBy,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>modifiedAt}',
+            Value: modifiedAt,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>modifiedBy}',
+            Value: modifiedBy,
         }
     ]
 );
@@ -266,6 +286,26 @@ annotate service.Deductions with @(
                 $Type: 'UI.DataField',
                 Label: '{@i18n>LineNumber}',
                 Value: LineNumber,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>createdAt}',
+                Value: createdAt,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>createdBy}',
+                Value: createdBy,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>modifiedAt}',
+                Value: modifiedAt,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>modifiedBy}',
+                Value: modifiedBy,
             }
         ],
     },
