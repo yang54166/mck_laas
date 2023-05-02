@@ -22,6 +22,8 @@ annotate my.Deductions with @title : 'Deductions'{
     createdBy @title : '{@i18n>createdBy}';
     modifiedAt @title : '{@i18n>modifiedAt}';
     modifiedBy @title : '{@i18n>modifiedBy}';
+    approvedDate @title : '{@i18n>approvedDate}';
+    approvedBy @title : '{@i18n>approvedBy}';
 
 };
 
