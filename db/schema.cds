@@ -14,7 +14,7 @@ entity Deductions: managed, cuid {
     componentID: String;
     sourceAmount: Decimal(23,2);
     sourceCurrency: String(5);
-    monthOfDeduction: Integer;
+    monthOfDeduction: String(10);
     originationDate: Date;
     approvedDate: Timestamp;
     approvedBy: String;

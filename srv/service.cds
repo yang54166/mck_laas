@@ -2,11 +2,11 @@ using {Laas as my} from '../db/schema';
 
 service LaasDeductionsService {
     entity Deductions as projection on my.Deductions actions {
-        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status', '_it/approvedBy', '_it/approvedDate']} )
+        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status', '_it/approvedBy', '_it/downloadDate', '_it/approvedDate', '_it/monthOfDeduction']} )
         action approve();
-        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status']} )
+        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status', '_it/downloadDate', '_it/approvedDate', '_it/monthOfDeduction']} )
         action unapprove();
-        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status', '_it/downloadDate']} )
+        @( cds.odata.bindingparameter.name : '_it', Common.SideEffects : {TargetProperties: ['_it/status', '_it/downloadDate', '_it/approvedDate', '_it/monthOfDeduction']} )
         action post();
     };
 

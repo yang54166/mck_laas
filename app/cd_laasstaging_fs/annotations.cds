@@ -1,5 +1,12 @@
 using LaasDeductionsService as service from '../../srv/service';
 
+annotate managed with {
+    createdAt   @UI.HiddenFilter : false;
+    createdBy   @UI.HiddenFilter : false;
+    modifiedAt   @UI.HiddenFilter : false;
+    modifiedBy   @UI.HiddenFilter : false;
+}
+
 annotate service.Deductions with @(
     UI.Identification     : [
         {
@@ -168,6 +175,26 @@ annotate service.Deductions with @(
             $Type: 'UI.DataField',
             Label: '{@i18n>LineNumber}',
             Value: LineNumber,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>createdAt}',
+            Value: createdAt,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>createdBy}',
+            Value: createdBy,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>modifiedAt}',
+            Value: modifiedAt,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: '{@i18n>modifiedBy}',
+            Value: modifiedBy,
         }
     ]
 );
@@ -266,6 +293,26 @@ annotate service.Deductions with @(
                 $Type: 'UI.DataField',
                 Label: '{@i18n>LineNumber}',
                 Value: LineNumber,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>createdAt}',
+                Value: createdAt,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>createdBy}',
+                Value: createdBy,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>modifiedAt}',
+                Value: modifiedAt,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: '{@i18n>modifiedBy}',
+                Value: modifiedBy,
             }
         ],
     },
